@@ -6,8 +6,7 @@ import { useState } from 'react';
 
 const App = () => {
 
-  const [todoList, setTodoList] = useState([
-  ]);
+  const [todoList, setTodoList] = useState([]);
 
   const addNewTodo = (name) => {
     const newTodo = {
@@ -15,6 +14,12 @@ const App = () => {
       name: name
     }
     setTodoList([...todoList, newTodo]);
+  }
+
+  const deleteTodo = (id) => {
+    const newTodo = todoList.filter(item => item.id !== id);
+    setTodoList(newTodo);
+
   }
 
   const randomIntFromInterval = (min, max) => { // min and max included 
@@ -31,6 +36,7 @@ const App = () => {
       {todoList.length > 0 ?
         <TodoData
           todoList={todoList}
+          deleteTodo={deleteTodo}
         />
         :
         <div className='todo-image'>
